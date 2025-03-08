@@ -1,13 +1,13 @@
 import { pool } from "../db.js";
 
-export const getEmployee = async (req, res) => {
+export const getProduct = async (req, res) => {
   try {
-    const [rows] = await pool.query("SELECT * FROM employees WHERE id = ?", [
+    const [rows] = await pool.query("SELECT * FROM products WHERE id = ?", [
       req.params.id,
     ]);
     if (rows.length <= 0)
       return res.status(404).json({
-        message: "Employee not found",
+        message: "Product not found",
       });
     res.json(rows[0]);
   } catch (error) {
@@ -17,9 +17,9 @@ export const getEmployee = async (req, res) => {
   }
 };
 
-export const getEmployees = async (req, res) => {
+export const getProducts = async (req, res) => {
   try {
-    const [rows] = await pool.query("SELECT * FROM employees");
+    const [rows] = await pool.query("SELECT * FROM products");
     res.json(rows);
   } catch (error) {
     return res.status(500).json({
@@ -28,13 +28,13 @@ export const getEmployees = async (req, res) => {
   }
 };
 
-export const createEmployee = async (req, res) => {
-  const { name, position, salary, department, description } = req.body;
+export const createProduct = async (req, res) => {
+  const { code, description, price, quantity } = req.body;
 
   try {
     const [rows] = await pool.query(
-      "INSERT INTO employees (name, position, salary, department, description) VALUES (?, ?, ?, ?, ?)",
-      [name, position, salary, department, description]
+      "INSERT INTO products (code, description, price, quantity) VALUES (?, ?, ?, ?)",
+      [code, description, price, quantity]
     );
     res.send({ rows });
   } catch (error) {
@@ -43,15 +43,15 @@ export const createEmployee = async (req, res) => {
   }
 };
 
-export const deleteEmployee = async (req, res) => {
+export const deleteProduct = async (req, res) => {
   try {
-    const [result] = await pool.query("DELETE FROM employees WHERE id = ?", [
+    const [result] = await pool.query("DELETE FROM products WHERE id = ?", [
       req.params.id,
     ]);
 
     if (result.affectedRows <= 0)
       return res.status(404).json({
-        message: "Not found employee for delete",
+        message: "Not found product for delete",
       });
 
     res.sendStatus(204);
@@ -62,22 +62,22 @@ export const deleteEmployee = async (req, res) => {
   }
 };
 
-export const updateEmployee = async (req, res) => {
+export const updateProduct = async (req, res) => {
   try {
     const { id } = req.params;
-    const { name, position, salary, department, description } = req.body;
+    const { code, description, price, quantity } = req.body;
     const [result] = await pool.query(
-      "UPDATE employees SET name = IFNULL(?, name), position = IFNULL(?, position), salary = IFNULL(?, salary), department = IFNULL(?, department), description = IFNULL(?, description) WHERE id = ?",
-      [name, position, salary, department, description, id]
+      "UPDATE products SET code = IFNULL(?, code), description = IFNULL(?, description), price = IFNULL(?, price), quantity = IFNULL(?, quantity) WHERE id = ?",
+      [code, description, price, quantity, id]
     );
     console.log(result);
 
     if (result.affectedRows === 0)
       return res.status(404).json({
-        message: "Employee not found",
+        message: "product not found",
       });
 
-    const [rows] = await pool.query("SELECT * FROM employees WHERE id = ?", [
+    const [rows] = await pool.query("SELECT * FROM products WHERE id = ?", [
       id,
     ]);
 

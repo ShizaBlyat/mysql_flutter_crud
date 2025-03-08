@@ -1,41 +1,26 @@
 class Product {
   final int? id;
-  final String name;
-  final String position;
-  final double salary;
-  final String department;
+  final String? code;
   final String description;
+  final double? price;
+  final int? quantity;
 
   Product({
     this.id,
+    this.code,
     required this.description,
-    required this.name,
-    required this.position,
-    required this.salary,
-    required this.department,
+    this.price,
+    this.quantity,
   });
 
   // Método para convertir el objeto a un mapa (JSON)
   Map<String, dynamic> toJson() {
     return {
       'id': id,
-      'name': name,
-      'position': position,
-      'salary': salary,
-      'department': department,
+      'code': code,
       'description': description,
+      'price': price,
+      'quantity': quantity
     };
-  }
-
-  // Método para crear un objeto Product desde un mapa (JSON)
-  factory Product.fromJson(Map<String, dynamic> item) {
-    return Product(
-      id: item['id'],
-      name: item['name'],
-      position: item['position'],
-      salary: (item['salary'] as num).toDouble(),
-      department: item['department'], 
-      description: '',
-    );
   }
 }

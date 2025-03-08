@@ -1,7 +1,7 @@
-import 'package:Control_de_Empleados/core/providers/product_provider.dart';
-import 'package:Control_de_Empleados/data/models/product_models.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:mysql_flutter_crud/core/providers/product_provider.dart';
+import 'package:mysql_flutter_crud/data/models/product_models.dart';
 
 //Call button delete in showmodal product
 class DeleteProductButton extends ConsumerWidget {
@@ -20,9 +20,9 @@ class DeleteProductButton extends ConsumerWidget {
           context: context,
           builder: (BuildContext context) {
             return AlertDialog(
-              title: const Text('Eliminar Empleado'),
+              title: const Text('Eliminar Producto'),
               content: const Text(
-                  '¿Estás seguro de que deseas eliminar este Empleado?'),
+                  '¿Estás seguro de que deseas eliminar este producto?'),
               actions: [
                 TextButton(
                   onPressed: () {
