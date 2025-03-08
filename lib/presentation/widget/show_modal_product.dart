@@ -1,7 +1,7 @@
+import 'package:Control_de_Empleados/data/models/product_models.dart';
+import 'package:Control_de_Empleados/presentation/widget/action_button.dart';
+import 'package:Control_de_Empleados/presentation/widget/init_product_form.dart';
 import 'package:flutter/material.dart';
-import 'package:mysql_flutter_crud/data/models/product_models.dart';
-import 'package:mysql_flutter_crud/presentation/widget/action_button.dart';
-import 'package:mysql_flutter_crud/presentation/widget/init_product_form.dart';
 import 'custom_text_field.dart';
 
 //Add product + Edit product call from product_ui
@@ -46,20 +46,20 @@ class ShowModalProductState extends State<ShowModalProduct> {
       padding: const EdgeInsets.all(16.0),
       children: [
         CustomTextField(
-          label: 'Code',
+          label: 'Nombre',
           controller: codeController,
         ),
         CustomTextField(
-          label: 'Description',
+          label: 'Descripción',
           controller: descriptionController,
         ),
         CustomTextField(
-          label: 'Price',
+          label: 'Salario',
           controller: priceController,
           keyboardType: TextInputType.number,
         ),
         CustomTextField(
-          label: 'Quantity',
+          label: 'Puesto',
           controller: quantityController,
           keyboardType: TextInputType.number,
         ),

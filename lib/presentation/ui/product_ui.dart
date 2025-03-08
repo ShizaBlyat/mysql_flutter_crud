@@ -1,8 +1,8 @@
+import 'package:Control_de_Empleados/core/providers/product_provider.dart';
+import 'package:Control_de_Empleados/data/models/product_models.dart';
+import 'package:Control_de_Empleados/presentation/widget/show_modal_product.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:mysql_flutter_crud/core/providers/product_provider.dart';
-import 'package:mysql_flutter_crud/data/models/product_models.dart';
-import 'package:mysql_flutter_crud/presentation/widget/show_modal_product.dart';
 import '../widget/product_list_tile.dart';
 
 class ProductUi extends ConsumerStatefulWidget {
@@ -24,7 +24,7 @@ class ProductUiState extends ConsumerState<ProductUi> {
     final products = ref.watch(productsProvider);
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Productos'),
+        title: const Text('Control de Empleados'), 
         actions: [
           ElevatedButton(
             onPressed: () {
@@ -34,12 +34,14 @@ class ProductUiState extends ConsumerState<ProductUi> {
                 context: context,
                 builder: (BuildContext context) {
                   return ShowModalProduct(
-                    onAdd: (code, description, price, quantity) async {
+                    onAdd: (name, position, salary, description) async {
                       final newProduct = Product(
-                        code: code,
-                        description: description,
-                        price: price,
-                        quantity: quantity,
+                        id: null,
+                        name: '', 
+                        position: '', 
+                        salary: 0.0, 
+                        department: '', 
+                        description: '',
                       );
                       await ref
                           .read(productControllerProvider.notifier)
@@ -49,7 +51,7 @@ class ProductUiState extends ConsumerState<ProductUi> {
                 },
               );
             },
-            child: const Text('Agregar Producto'),
+            child: const Text('Agregar Empleado'),
           ),
         ],
       ),

@@ -44,11 +44,11 @@ class ProductController extends StateNotifier<AsyncValue<List<Product>>> {
         final List<dynamic> data = json.decode(response.body);
         final List<Product> productList = data
             .map((item) => Product(
-                id: item['id'],
-                code: item['code'],
-                description: item['description'],
-                price: (item['price'] as num).toDouble(),
-                quantity: item['quantity']))
+              id: item['id'],
+              name: item['name'],
+              position: item['position'],
+              salary: (item['salary'] as num).toDouble(),
+              department: item['department'], description: ''))
             .toList();
 
         state = AsyncValue.data(productList);

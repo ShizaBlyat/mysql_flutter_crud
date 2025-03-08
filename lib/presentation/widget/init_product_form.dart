@@ -1,5 +1,5 @@
+import 'package:Control_de_Empleados/data/models/product_models.dart';
 import 'package:flutter/material.dart';
-import 'package:mysql_flutter_crud/data/models/product_models.dart';
 
 //Load initState in show modal product for edit product
 void initializeProductForm({
@@ -11,9 +11,7 @@ void initializeProductForm({
   required TextEditingController quantityController,
 }) {
   if (isEditMode && editedProduct != null) {
-    codeController.text = editedProduct.code.toString();
     descriptionController.text = editedProduct.description.toString();
-    priceController.text = editedProduct.price.toString();
-    quantityController.text = editedProduct.quantity.toString();
+    priceController.text = editedProduct.salary.toString();
   }
 }
